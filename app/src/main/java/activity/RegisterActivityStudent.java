@@ -37,6 +37,10 @@ public class RegisterActivityStudent extends Activity {
     private Button btnLinkToLogin;
     private EditText inputFullName;
     private EditText inputEmail;
+    private EditText inputSem;
+    private EditText inputBranch;
+    private EditText inputSection;
+    private EditText inputUSN;
     private EditText inputPassword;
     private ProgressDialog pDialog;
     private SessionManager session;
@@ -48,6 +52,10 @@ public class RegisterActivityStudent extends Activity {
         setContentView(R.layout.activity_register_student);
 
         inputFullName = (EditText) findViewById(R.id.name);
+        inputSem = (EditText) findViewById(R.id.sem);
+        inputBranch = (EditText) findViewById(R.id.branch);
+        inputSection = (EditText) findViewById(R.id.section);
+        inputUSN = (EditText) findViewById(R.id.usn);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         btnRegister = (Button) findViewById(R.id.btnRegister);
@@ -77,10 +85,15 @@ public class RegisterActivityStudent extends Activity {
             public void onClick(View view) {
                 String name = inputFullName.getText().toString().trim();
                 String email = inputEmail.getText().toString().trim();
+                String usn = inputUSN.getText().toString().trim();
+                String branch = inputBranch.getText().toString().trim();
+                String sem = inputSem.getText().toString().trim();
+                String section = inputSection.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, email, password);
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !sem.isEmpty()
+                        && !branch.isEmpty() && !section.isEmpty() && !usn.isEmpty()) {
+                    registerUser(usn, name, email, password, sem, branch, section);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -106,8 +119,8 @@ public class RegisterActivityStudent extends Activity {
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String name, final String email,
-                              final String password) {
+    private void registerUser(final String usn, final String name, final String email,
+                              final String password, final String sem, final String branch, final String section) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
 
@@ -131,13 +144,17 @@ public class RegisterActivityStudent extends Activity {
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
+                        String usn = user.getString("usn");
                         String name = user.getString("name");
                         String email = user.getString("email");
+                        String sem = user.getString("sem");
+                        String branch = user.getString("branch");
+                        String section = user.getString("section");
                         String created_at = user
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(usn, name, email, sem, branch, section, uid, created_at);
 
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
 
@@ -175,9 +192,13 @@ public class RegisterActivityStudent extends Activity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("usn", usn);
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("sem", sem);
+                params.put("branch", branch);
+                params.put("section", section);
 
                 return params;
             }

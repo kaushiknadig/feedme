@@ -136,13 +136,15 @@ public class LoginActivityLecturer extends Activity {
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
+                        String id = user.getString("id");
                         String name = user.getString("name");
                         String email = user.getString("email");
+                        String branch = user.getString("branch");
                         String created_at = user
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(id, name, email, branch, uid, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivityLecturer.this,
