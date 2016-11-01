@@ -1,8 +1,9 @@
 package activity;
 
 /**
- * Created by Kaushik on 31-10-2016.
+ * Created by pram on 11/1/2016.
  */
+
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -26,13 +27,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.pk.feedme.R;
-import app.AppConfig;
-import app.AppController;
+import app.AppConfigLecturer;
+import app.AppControllerLecturer;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
-public class LoginActivity extends Activity {
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+public class LoginActivityLecturer extends Activity {
+    private static final String TAG = RegisterActivityLecturer.class.getSimpleName();
     private Button btnLogin;
     private Button btnLinkToRegister;
     private EditText inputEmail;
@@ -64,7 +65,7 @@ public class LoginActivity extends Activity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivityLecturer.this, MainActivityLecturer.class);
             startActivity(intent);
             finish();
         }
@@ -95,7 +96,7 @@ public class LoginActivity extends Activity {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        RegisterActivity.class);
+                        RegisterActivityLecturer.class);
                 startActivity(i);
                 finish();
             }
@@ -114,7 +115,7 @@ public class LoginActivity extends Activity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
-                AppConfig.URL_LOGIN, new Response.Listener<String>() {
+                AppConfigLecturer.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -144,8 +145,8 @@ public class LoginActivity extends Activity {
                         db.addUser(name, email, uid, created_at);
 
                         // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
+                        Intent intent = new Intent(LoginActivityLecturer.this,
+                                MainActivityLecturer.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -185,7 +186,7 @@ public class LoginActivity extends Activity {
         };
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        AppControllerLecturer.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
     private void showDialog() {

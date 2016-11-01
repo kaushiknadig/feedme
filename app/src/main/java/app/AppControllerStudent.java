@@ -11,13 +11,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public class AppController extends Application {
+public class AppControllerStudent extends Application {
 
-    public static final String TAG = AppController.class.getSimpleName();
+    public static final String TAG = AppControllerStudent.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
 
-    private static AppController mInstance;
+    private static AppControllerStudent mInstance;
 
     @Override
     public void onCreate() {
@@ -25,7 +25,7 @@ public class AppController extends Application {
         mInstance = this;
     }
 
-    public static synchronized AppController getInstance() {
+    public static synchronized AppControllerStudent getInstance() {
         return mInstance;
     }
 

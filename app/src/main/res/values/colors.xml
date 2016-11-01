@@ -17,6 +17,10 @@
     <color name="colorAccent">#43A047</color>
     <color name="colorPrimary">#999999</color>
     <color name="colorPrimaryDark">#222222</color>
+    <color name="bg_selection">#263238</color>
+    <color name="btn_selection_bg">#F44336</color>
+    <color name="btn_selection">#ECEFF1</color>
+
 
 
 </resources>

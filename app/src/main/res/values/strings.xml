@@ -9,7 +9,10 @@
     <string name="hint_branch">Branch</string>
     <string name="hint_sem">Sem</string>
     <string name="hint_section">Section</string>
+    <string name="hint_id">Lecturer ID</string>
     <string name="btn_login">LOGIN</string>
+    <string name="btn_student">I am a Student</string>
+    <string name="btn_lecturer">I am a Lecturer</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
     <string name="btn_link_to_login">Already registred! Login Me.</string>

@@ -26,13 +26,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.pk.feedme.R;
-import app.AppConfig;
-import app.AppController;
+import app.AppConfigStudent;
+import app.AppControllerStudent;
 import helper.SQLiteHandler;
 import helper.SessionManager;
 
-public class RegisterActivity extends Activity {
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+public class RegisterActivityStudent extends Activity {
+    private static final String TAG = RegisterActivityStudent.class.getSimpleName();
     private Button btnRegister;
     private Button btnLinkToLogin;
     private EditText inputFullName;
@@ -45,7 +45,7 @@ public class RegisterActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_student);
 
         inputFullName = (EditText) findViewById(R.id.name);
         inputEmail = (EditText) findViewById(R.id.email);
@@ -66,8 +66,8 @@ public class RegisterActivity extends Activity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(RegisterActivity.this,
-                    MainActivity.class);
+            Intent intent = new Intent(RegisterActivityStudent.this,
+                    MainActivityStudent.class);
             startActivity(intent);
             finish();
         }
@@ -94,7 +94,7 @@ public class RegisterActivity extends Activity {
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        LoginActivity.class);
+                        LoginActivityStudent.class);
                 startActivity(i);
                 finish();
             }
@@ -115,7 +115,7 @@ public class RegisterActivity extends Activity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
-                AppConfig.URL_REGISTER, new Response.Listener<String>() {
+                AppConfigStudent.URL_REGISTER, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -143,8 +143,8 @@ public class RegisterActivity extends Activity {
 
                         // Launch login activity
                         Intent intent = new Intent(
-                                RegisterActivity.this,
-                                LoginActivity.class);
+                                RegisterActivityStudent.this,
+                                LoginActivityStudent.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -185,7 +185,7 @@ public class RegisterActivity extends Activity {
         };
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        AppControllerStudent.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
     private void showDialog() {

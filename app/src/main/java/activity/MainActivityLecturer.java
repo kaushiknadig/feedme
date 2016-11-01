@@ -1,8 +1,9 @@
 package activity;
 
 /**
- * Created by Kaushik on 31-10-2016.
+ * Created by pram on 11/1/2016.
  */
+
 
 import helper.SQLiteHandler;
 import helper.SessionManager;
@@ -17,7 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivityLecturer extends Activity {
 
     private TextView txtName;
     private TextView txtEmail;
@@ -29,7 +30,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_student);
 
         txtName = (TextView) findViewById(R.id.name);
         txtEmail = (TextView) findViewById(R.id.email);
@@ -75,7 +76,7 @@ public class MainActivity extends Activity {
         db.deleteUsers();
 
         // Launching the login activity
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivityLecturer.this, LoginActivityLecturer.class);
         startActivity(intent);
         finish();
     }
