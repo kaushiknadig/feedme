@@ -4,7 +4,7 @@ package activity;
  * Created by Kaushik on 31-10-2016.
  */
 
-import helper.SQLiteHandler;
+import helper.SQLiteHandlerStudent;
 import helper.SessionManager;
 import com.pk.feedme.R;
 
@@ -23,7 +23,7 @@ public class MainActivityStudent extends Activity {
     private TextView txtEmail;
     private Button btnLogout;
 
-    private SQLiteHandler db;
+    private SQLiteHandlerStudent db;
     private SessionManager session;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivityStudent extends Activity {
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
         // SqLite database handler
-        db = new SQLiteHandler(getApplicationContext());
+        db = new SQLiteHandlerStudent(getApplicationContext());
 
         // session manager
         session = new SessionManager(getApplicationContext());

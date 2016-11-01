@@ -29,7 +29,7 @@ import java.util.Map;
 import com.pk.feedme.R;
 import app.AppConfigLecturer;
 import app.AppControllerLecturer;
-import helper.SQLiteHandler;
+import helper.SQLiteHandlerStudent;
 import helper.SessionManager;
 
 public class LoginActivityLecturer extends Activity {
@@ -40,7 +40,7 @@ public class LoginActivityLecturer extends Activity {
     private EditText inputPassword;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private SQLiteHandler db;
+    private SQLiteHandlerStudent db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class LoginActivityLecturer extends Activity {
         pDialog.setCancelable(false);
 
         // SQLite database handler
-        db = new SQLiteHandler(getApplicationContext());
+        db = new SQLiteHandlerStudent(getApplicationContext());
 
         // Session manager
         session = new SessionManager(getApplicationContext());

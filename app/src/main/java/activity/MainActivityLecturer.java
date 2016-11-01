@@ -5,7 +5,7 @@ package activity;
  */
 
 
-import helper.SQLiteHandler;
+import helper.SQLiteHandlerStudent;
 import helper.SessionManager;
 import com.pk.feedme.R;
 
@@ -24,7 +24,7 @@ public class MainActivityLecturer extends Activity {
     private TextView txtEmail;
     private Button btnLogout;
 
-    private SQLiteHandler db;
+    private SQLiteHandlerStudent db;
     private SessionManager session;
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivityLecturer extends Activity {
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
         // SqLite database handler
-        db = new SQLiteHandler(getApplicationContext());
+        db = new SQLiteHandlerStudent(getApplicationContext());
 
         // session manager
         session = new SessionManager(getApplicationContext());
