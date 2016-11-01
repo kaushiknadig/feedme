@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">FeedMe</string>
-    <string name="hint_email">Email</string>
+    <string name="hint_student_email">Student Mail ID</string>
+    <string name="hint_lecturer_email">Lecturer Mail ID</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Full Name</string>
     <string name="hint_usn">USN</string>
