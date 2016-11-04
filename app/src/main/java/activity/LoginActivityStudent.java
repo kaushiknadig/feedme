@@ -135,13 +135,17 @@ public class LoginActivityStudent extends Activity {
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
+                        String usn = user.getString("usn");
                         String name = user.getString("name");
                         String email = user.getString("email");
+                        String branch = user.getString("branch");
+                        String sem = user.getString("sem");
+                        String section = user.getString("section");
                         String created_at = user
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(usn, name, email, branch, sem, section, uid, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivityStudent.this,
