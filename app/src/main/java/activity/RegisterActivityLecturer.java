@@ -35,11 +35,11 @@ public class RegisterActivityLecturer extends Activity {
     private static final String TAG = RegisterActivityLecturer.class.getSimpleName();
     private Button btnRegister;
     private Button btnLinkToLogin;
+    private EditText inputLid;
+    private EditText inputBranch;
     private EditText inputFullName;
     private EditText inputEmail;
     private EditText inputPassword;
-    private EditText inputId;
-    private EditText inputBranch;
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandlerLecturer db;
@@ -49,10 +49,10 @@ public class RegisterActivityLecturer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_lecturer);
 
+        inputLid = (EditText) findViewById(R.id.lid);
         inputFullName = (EditText) findViewById(R.id.name);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
-        inputId = (EditText) findViewById(R.id.id);
         inputBranch = (EditText) findViewById(R.id.branch);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
@@ -79,15 +79,14 @@ public class RegisterActivityLecturer extends Activity {
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String id = inputId.getText().toString().trim();
+                String lid = inputLid.getText().toString().trim();
                 String name = inputFullName.getText().toString().trim();
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
                 String branch = inputBranch.getText().toString().trim();
 
-
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !id.isEmpty() && !branch.isEmpty()) {
-                    registerUser(id, name, email, password, branch);
+                if (!lid.isEmpty() && !name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !branch.isEmpty()) {
+                    registerUser(lid, name, email, password, branch);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -113,7 +112,7 @@ public class RegisterActivityLecturer extends Activity {
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String id, final String name, final String email,
+    private void registerUser(final String lid, final String name, final String email,
                               final String password, final String branch) {
         // Tag used to cancel the request
         String tag_string_req = "req_register";
@@ -138,7 +137,7 @@ public class RegisterActivityLecturer extends Activity {
                         String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
-                        String id = user.getString("id");
+                        String lid = user.getString("lid");
                         String name = user.getString("name");
                         String email = user.getString("email");
                         String branch = user.getString("branch");
@@ -146,7 +145,7 @@ public class RegisterActivityLecturer extends Activity {
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(id, name, email, branch, uid, created_at);
+                        db.addUser(lid, name, email, branch, uid, created_at);
 
                         Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
 
@@ -184,7 +183,7 @@ public class RegisterActivityLecturer extends Activity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", id);
+                params.put("lid", lid);
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);

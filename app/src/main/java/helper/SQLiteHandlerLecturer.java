@@ -22,10 +22,10 @@ public class SQLiteHandlerLecturer extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "android_api";
+    private static final String DATABASE_NAME = "u780616865_login";
 
     // Login table name
-    private static final String TABLE_USER = "user";
+    private static final String TABLE_USER = "lecturer";
 
     // Login Table Columns names
     private static final String KEY_ID = "id";
@@ -44,10 +44,8 @@ public class SQLiteHandlerLecturer extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_LID + " TEXT,"
-                + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_BRANCH + " TEXT,"
-                + KEY_UID + " TEXT,"
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_LID + " TEXT, " + KEY_NAME + " TEXT,"
+                + KEY_EMAIL + " TEXT UNIQUE," + KEY_BRANCH + " TEXT," + KEY_UID + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -71,10 +69,10 @@ public class SQLiteHandlerLecturer extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_LID, lid);//Lid
+        values.put(KEY_LID, lid); // Name
         values.put(KEY_NAME, name); // Name
-        values.put(KEY_EMAIL, email);//Email
-        values.put(KEY_BRANCH, branch);// Branch
+        values.put(KEY_EMAIL, email); // Email
+        values.put(KEY_BRANCH, branch); // Name
         values.put(KEY_UID, uid); // Email
         values.put(KEY_CREATED_AT, created_at); // Created At
 
